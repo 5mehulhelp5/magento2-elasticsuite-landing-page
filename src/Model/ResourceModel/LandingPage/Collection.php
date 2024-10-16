@@ -15,7 +15,7 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init(LandingPage::class, \Actiview\ElasticsuiteLandingPages\Model\ResourceModel\LandingPage::class);
-        $this->_map['fields']['page_id'] = 'main_table.entity_id';
+        $this->_map['fields']['entity_id'] = 'main_table.entity_id';
         $this->_map['fields']['store'] = 'store_table.store_id';
     }
 
@@ -38,7 +38,7 @@ class Collection extends AbstractCollection
     }
 
     /**
-     * @param array|string|null $store
+     * @param array|string|int|null $store
      */
     public function addStoreFilter($store, bool $withAdmin = true): self
     {
@@ -51,7 +51,7 @@ class Collection extends AbstractCollection
     }
 
     /**
-     * @param array|string|null $store
+     * @param array|string|int|null $store
      */
     private function performAddStoreFilter($store, bool $withAdmin = true): self
     {
@@ -109,14 +109,12 @@ class Collection extends AbstractCollection
 
     private function joinStoreRelationTable(string $tableName, string $linkField): void
     {
-        if ($this->getFilter('store')) {
-            $this->getSelect()->join(
-                ['store_table' => $this->getTable($tableName)],
-                'main_table.' . $linkField . ' = store_table.' . $linkField,
-                []
-            )->group(
-                'main_table.' . $linkField
-            );
-        }
+        $this->getSelect()->join(
+            ['store_table' => $this->getTable($tableName)],
+            'main_table.' . $linkField . ' = store_table.' . $linkField,
+            []
+        )->group(
+            'main_table.' . $linkField
+        );
     }
 }
