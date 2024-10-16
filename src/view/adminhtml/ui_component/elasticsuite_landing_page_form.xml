@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">elasticsuite_landing_page_form.elasticsuite_landing_page_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Actiview\ElasticsuiteLandingPages\Block\Adminhtml\LandingPage\Edit\SaveButton"/>
+            <button name="delete" class="Actiview\ElasticsuiteLandingPages\Block\Adminhtml\LandingPage\Edit\DeleteButton"/>
+            <button name="back" class="Actiview\ElasticsuiteLandingPages\Block\Adminhtml\LandingPage\Edit\BackButton"/>
+        </buttons>
+        <namespace>elasticsuite_landing_page_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>elasticsuite_landing_page_form.elasticsuite_landing_page_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="elasticsuite_landing_page_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="landingpages/landingpage/save"/>
+        </settings>
+        <dataProvider class="Actiview\ElasticsuiteLandingPages\Model\LandingPage\DataProvider" name="elasticsuite_landing_page_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">General</label>
+        </settings>
+
+        <field name="is_active" formElement="checkbox">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Active</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="title" formElement="input">
+            <settings>
+                <label translate="true">Title</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="store_id" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Store View</label>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+
+    <fieldset name="seo">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">Search Engine Optimization </label>
+        </settings>
+
+        <field name="url_key" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">URL Key</label>
+                <notice translate="true">The URL Key be generated, based on the title, when you leave this field empty.</notice>
+                <validation>
+                    <rule name="validate-identifier" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <field name="meta_title" formElement="input">
+            <settings>
+                <label translate="true">Meta Title</label>
+            </settings>
+        </field>
+
+        <field name="meta_description" formElement="textarea">
+            <settings>
+                <label translate="true">Meta Description</label>
+            </settings>
+        </field>
+
+        <field name="meta_keywords" formElement="textarea">
+            <settings>
+                <label translate="true">Meta Keywords</label>
+            </settings>
+        </field>
+    </fieldset>
+
+    <fieldset name="content">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">Content</label>
+        </settings>
+
+        <container name="optimizer_rule_container">
+            <htmlContent name="rule_condition">
+                <argument name="block" xsi:type="object">Actiview\ElasticsuiteLandingPages\Block\Adminhtml\LandingPage\RuleCondition</argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Smile_ElasticsuiteCatalogRule/js/component/catalog/product/form/rule</item>
+                        <item name="dataScope" xsi:type="string">rule_condition</item>
+                    </item>
+                </argument>
+            </htmlContent>
+        </container>
+
+        <field name="content_heading" formElement="input">
+            <settings>
+                <label translate="true">Content Heading</label>
+            </settings>
+        </field>
+
+        <field name="content_top" template="ui/form/field" formElement="wysiwyg">
+            <settings>
+                <label>Content Top</label>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+
+        <field name="content_bottom" template="ui/form/field" formElement="wysiwyg">
+            <settings>
+                <label>Content Bottom</label>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+
+        <field name="cms_block_top" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="caption" xsi:type="string" translate="true">Please select...</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">CMS Block Top</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Cms\Model\Config\Source\Block"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="cms_block_bottom" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="caption" xsi:type="string" translate="true">Please select...</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">CMS Block Bottom</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Cms\Model\Config\Source\Block"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

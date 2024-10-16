@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd"
+>
+    <event name="landing_page_save_after">
+        <observer name="process_url_rewrite_saving" instance="Actiview\ElasticsuiteLandingPages\Observer\ProcessUrlRewriteAfterSave" />
+    </event>
+    <event name="landing_page_delete_after">
+        <observer name="process_url_rewrite_delete" instance="Actiview\ElasticsuiteLandingPages\Observer\ProcessUrlRewriteAfterDelete" />
+    </event>
+</config>

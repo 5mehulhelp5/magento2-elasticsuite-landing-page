@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="elasticsuite_landing_page" engine="innodb" comment="Landing Pages">
+        <column name="entity_id" xsi:type="int" comment="entity_id" nullable="false" identity="true" unsigned="true" padding="10"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Landing Page Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Landing Page Update At"/>
+        <column name="is_active" xsi:type="smallint" comment="Is Landing Page Active" nullable="true"/>
+        <column name="title" xsi:type="varchar" comment="Landing Page Title" nullable="true"/>
+        <column name="url_key" xsi:type="varchar" comment="Landing Page URL Key" nullable="true"/>
+        <column name="meta_title" xsi:type="varchar" comment="Landing Page Meta Title" nullable="true"/>
+        <column name="meta_description" xsi:type="text" comment="Landing Page Meta Description" nullable="true"/>
+        <column name="meta_keywords" xsi:type="text" comment="Landing Page Meta Keywords" nullable="true"/>
+        <column name="rule_condition" xsi:type="text" comment="Landing Page Rule Condition" nullable="true"/>
+        <column name="content_heading" xsi:type="text" comment="Landing Page Content Heading" nullable="true"/>
+        <column name="content_top" xsi:type="text" comment="Landing Page Content Top" nullable="true"/>
+        <column name="content_bottom" xsi:type="text" comment="Landing Page Content Bottom" nullable="true"/>
+        <column name="cms_block_top" xsi:type="varchar" comment="Landing Page CMS Block Top" nullable="true"/>
+        <column name="cms_block_bottom" xsi:type="varchar" comment="Landing Page CMS Block Bottom" nullable="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="ELASTICSUITE_LANDING_PAGE_ENTITY_ID" indexType="fulltext">
+            <column name="title"/>
+            <column name="url_key"/>
+        </index>
+    </table>
+    <table name="elasticsuite_landing_page_store" resource="default" engine="innodb" comment="Landing Page To Store Linkage Table">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="false" comment="Landing Page Entity ID"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="ELASTICSUITE_LANDING_PAGE_STORE_ENTITY_ID_ELASTICSUITE_LANDING_PAGE_ENTITY_ID" table="elasticsuite_landing_page_store"
+                    column="entity_id" referenceTable="elasticsuite_landing_page" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ELASTICSUITE_LANDING_PAGE_STORE_STORE_ID_STORE_STORE_ID" table="elasticsuite_landing_page_store"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="ELASTICSUITE_LANDING_PAGE_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

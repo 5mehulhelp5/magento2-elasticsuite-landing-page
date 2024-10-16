@@ -1,0 +1,21 @@
+parameters:
+    level: 8
+    fileExtensions:
+        - php
+        - phtml
+    paths:
+        - src
+    ignoreErrors:
+        - identifier: missingType.iterableValue
+        - message: '~Parameter \#1 \$message of method Magento\\Framework\\Message\\ManagerInterface::add(.*)Message\(\) expects string, Magento\\Framework\\Phrase given~'
+          path: *
+        - message: '~Parameter \#1 \$prefix of method Magento\\Framework\\View\\Page\\Title::prepend\(\) expects string, Magento\\Framework\\Phrase given~'
+          path: src/Controller/Adminhtml/*.php
+        - message: '~Call to an undefined method Magento\\Framework\\App\\RequestInterface::(getPathInfo|setControllerName|getPostValue).~'
+          path: src/Controller*.php
+        - message: '~Call to an undefined method Magento\\Store\\Api\\Data\\StoreInterface::getRootCategoryId.~'
+          path: src/Controller*.php
+        - message: '~Call to an undefined method Magento\\Catalog\\Api\\Data\\CategoryInterface::hasChildren.~'
+          path: src/Controller*.php
+        - message: '~Call to an undefined method Magento\\Framework\\View\\Result\\Page::setActiveMenu~'
+          path: src/Controller/Adminhtml/*.php

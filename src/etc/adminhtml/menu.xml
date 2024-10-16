@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Actiview_ElasticsuiteLandingPages::Section" title="Landing Pages" translate="title" module="Actiview_ElasticsuiteLandingPages" sortOrder="100" parent="Magento_Backend::content" resource="Actiview_ElasticsuiteLandingPages::LandingPage" />
+        <add id="Actiview_ElasticsuiteLandingPages::LandingPage" title="Manage" translate="title" module="Actiview_ElasticsuiteLandingPages" sortOrder="10" parent="Actiview_ElasticsuiteLandingPages::Section" resource="Actiview_ElasticsuiteLandingPages::LandingPage" action="landingpages/landingpage/index" />
+    </menu>
+</config>

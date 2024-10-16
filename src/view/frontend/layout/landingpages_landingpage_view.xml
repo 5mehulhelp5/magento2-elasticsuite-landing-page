@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<page
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+>
+    <body>
+        <referenceBlock name="category.image" remove="true"/>
+        <referenceBlock name="category.description" remove="true"/>
+        <referenceBlock name="category.cms" remove="true"/>
+
+        <referenceContainer name="category.view.container">
+            <block
+                name="landingpage-content-top"
+                class="Actiview\ElasticsuiteLandingPages\Block\LandingPage"
+                template="Actiview_ElasticsuiteLandingPages::content_top.phtml"
+            />
+            <block
+                name="landingpage-cms-top"
+                class="Actiview\ElasticsuiteLandingPages\Block\LandingPage"
+                template="Actiview_ElasticsuiteLandingPages::cms_block_top.phtml"
+            />
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block
+                name="landingpage-content-bottom"
+                class="Actiview\ElasticsuiteLandingPages\Block\LandingPage"
+                template="Actiview_ElasticsuiteLandingPages::content_bottom.phtml"
+                after="category.products"
+            />
+            <block
+                name="landingpage-cms-bottom"
+                class="Actiview\ElasticsuiteLandingPages\Block\LandingPage"
+                template="Actiview_ElasticsuiteLandingPages::cms_block_bottom.phtml"
+                after="landingpage-content-bottom"
+            />
+        </referenceContainer>
+    </body>
+</page>

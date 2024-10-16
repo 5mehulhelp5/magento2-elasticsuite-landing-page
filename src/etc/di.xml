@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd"
+>
+    <preference for="Actiview\ElasticsuiteLandingPages\Api\LandingPageRepositoryInterface" type="Actiview\ElasticsuiteLandingPages\Model\LandingPageRepository" />
+    <preference for="Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterface" type="Actiview\ElasticsuiteLandingPages\Model\LandingPage"/>
+    <preference for="Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageSearchResultsInterface" type="Actiview\ElasticsuiteLandingPages\Model\LandingPageSearchResults"/>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="elasticsuite_landing_page_listing_data_source" xsi:type="string">ActiviewLandingPagesLandingPageCollection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="ActiviewLandingPagesLandingPageCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">elasticsuite_landing_page</argument>
+            <argument name="resourceModel" xsi:type="string">Actiview\ElasticsuiteLandingPages\Model\ResourceModel\LandingPage</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\UrlRewrite\Model\UrlRewrite">
+        <arguments>
+            <argument name="entityToCacheTagMap" xsi:type="array">
+                <item name="landingpage" xsi:type="const">Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterface::CACHE_TAG</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
