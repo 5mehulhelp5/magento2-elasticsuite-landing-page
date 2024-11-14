@@ -11,7 +11,7 @@ interface LandingPageSearchResultsInterface extends SearchResultsInterface
     /**
      * @return LandingPageInterface[]
      */
-    public function getItems(): array;
+    public function getItems();
 
     /**
      * @param LandingPageInterface[] $items
