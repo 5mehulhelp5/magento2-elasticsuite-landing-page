@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Actiview\ElasticsuiteLandingPages\Model;
 
-use Magento\Framework\Model\Context;
-use Magento\Framework\Registry;
-use Smile\ElasticsuiteCatalogRule\Model\RuleFactory;
-use Magento\Framework\Serialize\SerializerInterface;
-use Magento\Framework\Model\ResourceModel\AbstractResource;
-use Magento\Framework\Data\Collection\AbstractDb;
+use Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterface;
 use Actiview\ElasticsuiteLandingPages\Model\ResourceModel\LandingPage as LandingPageResource;
 use Magento\Framework\DataObject\IdentityInterface;
+use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Model\AbstractModel;
-use Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterface;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Registry;
+use Magento\Framework\Serialize\SerializerInterface;
 use Smile\ElasticsuiteCatalogRule\Model\Rule;
+use Smile\ElasticsuiteCatalogRule\Model\RuleFactory;
 
 class LandingPage extends AbstractModel implements LandingPageInterface, IdentityInterface
 {

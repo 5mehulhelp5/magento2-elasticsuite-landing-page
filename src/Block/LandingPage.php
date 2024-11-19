@@ -48,7 +48,7 @@ class LandingPage extends Template implements IdentityInterface
         $this->validatePosition($position);
         $landingPage = $this->getLandingPage();
         $field = 'content_' . $position;
-        $content = $landingPage->getData($field);
+        $content = $landingPage->getData($field) ?? '';
 
         return $this->filter->filter($content);
     }

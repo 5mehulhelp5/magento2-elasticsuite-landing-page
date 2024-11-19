@@ -9,6 +9,7 @@ namespace Actiview\ElasticsuiteLandingPages\Api\Data;
  * @method getEntityId()
  * @method getTitle()
  * @method getUrlKey()
+ * @method getIsActive()
  * @method getStoreId()
  * @method getStoreIds()
  * @method getRuleCondition()
