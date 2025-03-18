@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Actiview\ElasticsuiteLandingPages\Controller\Adminhtml\LandingPage;
 
+use Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterfaceFactory;
+use Actiview\ElasticsuiteLandingPages\Api\LandingPageRepositoryInterface;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\Result\RedirectFactory;
 use Magento\Framework\Controller\ResultInterface;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Message\ManagerInterface;
 
 class Duplicate implements HttpGetActionInterface
@@ -18,17 +21,32 @@ class Duplicate implements HttpGetActionInterface
         private readonly RequestInterface $request,
         private readonly ManagerInterface $messageManager,
         private readonly RedirectFactory $resultRedirectFactory,
+        private readonly LandingPageRepositoryInterface $repository,
+        private readonly LandingPageInterfaceFactory $modelFactory,
     ) {}
 
-    /**
-     * @todo Implement duplication
-     */
     public function execute(): ResultInterface
     {
-        $id = $this->request->getParam('entity_id');
         $redirect = $this->resultRedirectFactory->create();
 
-        $this->messageManager->addNoticeMessage(__('Duplication is not yet implemented.'));
+        try {
+            $id = $this->request->getParam('entity_id');
+            $model = $this->repository->get((int) $id);
+        } catch (LocalizedException $e) {
+            $this->messageManager->addErrorMessage(__('This landing page no longer exists.'));
+            return $redirect->setPath('*/*/');
+        }
+
+        $data = $model->getData();
+        $newModel = $this->modelFactory->create(['data' => $data]);
+        $urlKey = $model->getUrlKey() . '-' . uniqid();
+        $newModel->setCreatedAt(null);
+        $newModel->setUpdatedAt(null);
+        $newModel->setId(null);
+        $newModel->setUrlKey($urlKey);
+        $this->repository->save($newModel);
+
+        $this->messageManager->addSuccessMessage(__('This landing page is duplicated.'));
 
         return $redirect->setPath('*/*/');
     }
