@@ -20,8 +20,8 @@
         "constaint": {
             "PRIMARY": true
         },
-        "search": {
-            "ELASTICSUITE_LANDING_PAGE_ENTITY_ID": true
+        "index": {
+            "ELASTICSUITE_LANDING_PAGE_FULLTEXT": true
         }
     },
     "elasticsuite_landing_page_store": {

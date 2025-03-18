@@ -7,6 +7,16 @@
     <preference for="Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageInterface" type="Actiview\ElasticsuiteLandingPages\Model\LandingPage"/>
     <preference for="Actiview\ElasticsuiteLandingPages\Api\Data\LandingPageSearchResultsInterface" type="Actiview\ElasticsuiteLandingPages\Model\LandingPageSearchResults"/>
 
+    <virtualType name="ActiviewLandingPagesLandingPageCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="name" xsi:type="string">elasticsuite_landing_page_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="mainTable" xsi:type="string">elasticsuite_landing_page</argument>
+            <argument name="resourceModel" xsi:type="string">Actiview\ElasticsuiteLandingPages\Model\ResourceModel\LandingPage</argument>
+        </arguments>
+    </virtualType>
+
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
@@ -14,13 +24,6 @@
             </argument>
         </arguments>
     </type>
-
-    <virtualType name="ActiviewLandingPagesLandingPageCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
-        <arguments>
-            <argument name="mainTable" xsi:type="string">elasticsuite_landing_page</argument>
-            <argument name="resourceModel" xsi:type="string">Actiview\ElasticsuiteLandingPages\Model\ResourceModel\LandingPage</argument>
-        </arguments>
-    </virtualType>
 
     <type name="Magento\UrlRewrite\Model\UrlRewrite">
         <arguments>

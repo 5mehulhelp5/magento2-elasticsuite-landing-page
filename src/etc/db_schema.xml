@@ -19,9 +19,10 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
-        <index referenceId="ELASTICSUITE_LANDING_PAGE_ENTITY_ID" indexType="fulltext">
+        <index referenceId="ELASTICSUITE_LANDING_PAGE_FULLTEXT" indexType="fulltext">
             <column name="title"/>
-            <column name="url_key"/>
+            <column name="content_top"/>
+            <column name="content_bottom"/>
         </index>
     </table>
     <table name="elasticsuite_landing_page_store" resource="default" engine="innodb" comment="Landing Page To Store Linkage Table">
